@@ -41,7 +41,12 @@
             <p>定位沙盘</p>
             <span>仅展示该景点的坐标关系</span>
           </header>
-          <div class="mini-map__canvas">
+          <div 
+            class="mini-map__canvas"
+            @touchstart.prevent.stop
+            @touchmove.prevent.stop
+            @touchend.prevent.stop
+          >
             <div class="mini-map__grid"></div>
             <div class="mini-map__ring"></div>
             <div class="mini-map__marker">
@@ -365,6 +370,8 @@ onMounted(() => {
   background: radial-gradient(circle at 30% 30%, #dfe8ff, #c3d6ff);
   position: relative;
   overflow: hidden;
+  touch-action: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mini-map__grid {

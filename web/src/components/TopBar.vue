@@ -163,15 +163,26 @@ const handleNav = (item) => {
 
 @media (max-width: 960px) {
   .top-bar-inner {
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr auto;
     gap: 12px;
     width: calc(100% - 32px);
     padding: 12px 0;
   }
   .nav-links {
-    grid-column: span 2;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: none;
+  }
+  .nav-spacer {
+    display: none;
+  }
+  .logo {
+    flex: 1;
+    min-width: 0;
+  }
+  .logo strong {
+    font-size: 15px;
+  }
+  .logo small {
+    display: none;
   }
 }
 
@@ -182,37 +193,41 @@ const handleNav = (item) => {
     gap: 8px;
   }
   .logo {
-    gap: 8px;
+    gap: 6px;
+    min-width: 0;
   }
   .badge {
     padding: 4px 8px;
     font-size: 10px;
+    flex-shrink: 0;
+  }
+  .logo > div {
+    min-width: 0;
+    overflow: hidden;
   }
   .logo strong {
     font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .logo small {
-    font-size: 11px;
+    display: none;
   }
   .nav-links {
-    gap: 8px;
-  }
-  .nav-links button {
-    padding: 8px 12px;
-    font-size: 13px;
+    display: none;
   }
   .user-mini {
-    gap: 8px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .user-mini > div {
+    display: none;
   }
   .user-mini img {
     width: 32px;
     height: 32px;
-  }
-  .user-mini span {
-    font-size: 11px;
-  }
-  .user-mini strong {
-    font-size: 13px;
   }
 }
 </style>

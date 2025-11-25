@@ -12,6 +12,11 @@
     </section>
 
     <section class="form-panel">
+      <div class="mobile-header">
+        <p>YUNLAN SCENIC</p>
+        <h1>云岚景区 · 数字打卡平台</h1>
+        <p>统一的游客身份认证 · 电子沙盘 · 可视化打卡体验</p>
+      </div>
       <div class="form-header">
         <h2>{{ mode === 'login' ? '账号登录' : '新访客注册' }}</h2>
         <p v-if="mode === 'login'">
@@ -330,21 +335,77 @@ button:disabled {
   text-decoration: underline;
 }
 
+.mobile-header {
+  display: none;
+}
+
 @media (max-width: 960px) {
   .auth-shell {
     grid-template-columns: 1fr;
+    background: linear-gradient(135deg, #fff5ec, #f1f5ff);
+    min-height: 100vh;
+    padding: 20px;
   }
   .hero-panel {
     display: none;
   }
+  .mobile-header {
+    display: block;
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(29, 37, 64, 0.1);
+  }
+  .mobile-header p:first-child {
+    letter-spacing: 4px;
+    font-size: 11px;
+    color: rgba(29, 37, 64, 0.6);
+    margin: 0 0 8px;
+    text-transform: uppercase;
+  }
+  .mobile-header h1 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    color: #1d2540;
+    font-weight: 600;
+  }
+  .mobile-header p:last-child {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(29, 37, 64, 0.65);
+    line-height: 1.5;
+  }
   .form-panel {
     padding: 40px 24px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(15, 30, 80, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
+  .auth-shell {
+    padding: 16px;
+  }
+  .mobile-header {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+  }
+  .mobile-header h1 {
+    font-size: 20px;
+  }
+  .mobile-header p:first-child {
+    font-size: 10px;
+  }
+  .mobile-header p:last-child {
+    font-size: 12px;
+  }
   .form-panel {
     padding: 32px 20px;
+    border-radius: 20px;
   }
   .form-header h2 {
     font-size: 24px;

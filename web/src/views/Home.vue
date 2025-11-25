@@ -15,9 +15,6 @@
           通过数字化交互地图实时掌握景点热度、完成打卡任务，并同步后台积分。
           点击任意景点即可查看亮点与立即打卡。
         </p>
-        <div class="hero-actions">
-          <button class="primary" @click="resetView">回到沙盘中心</button>
-        </div>
       </div>
         <div class="hero-stats">
         <div class="stat-card">
@@ -65,7 +62,14 @@
         </div>
       </div>
 
-      <div class="map-stage" ref="mapStage" @pointerdown="startPan">
+      <div 
+        class="map-stage" 
+        ref="mapStage" 
+        @pointerdown="startPan"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+      >
         <div v-if="loading" class="map-overlay">
           <div class="spinner"></div>
           <p>正在加载景点数据...</p>
@@ -86,6 +90,8 @@
               class="map-marker"
               :style="markerStyle(spot)"
               @click.stop="openSpotPopover(spot)"
+              @touchstart.stop
+              @touchend.stop="openSpotPopover(spot)"
             >
               <span class="marker-dot"></span>
               <span class="marker-label">{{ spot.name }}</span>
@@ -156,6 +162,7 @@ const mapOffset = ref({ x: 0, y: 0 })
 const lastOffset = ref({ x: 0, y: 0 })
 const isPanning = ref(false)
 const pointerState = ref({ id: null, startX: 0, startY: 0 })
+const touchState = ref({ startX: 0, startY: 0, isActive: false })
 
 const bounds = computed(() => {
   if (!spots.value.length) return null
@@ -230,6 +237,61 @@ const handlePointerMove = (event) => {
   mapOffset.value = {
     x: lastOffset.value.x + dx,
     y: lastOffset.value.y + dy
+  }
+}
+
+const handleTouchStart = (event) => {
+  const touch = event.touches[0]
+  if (touch) {
+    const target = event.target
+    // 如果点击的是标记或弹窗，不处理拖动，允许点击事件
+    if (target.closest('.map-marker') || target.closest('.spot-popover')) {
+      touchState.value.isActive = false
+      return
+    }
+    // 否则准备拖动
+    touchState.value = {
+      startX: touch.clientX,
+      startY: touch.clientY,
+      isActive: true
+    }
+  }
+}
+
+const handleTouchMove = (event) => {
+  if (!touchState.value.isActive) return
+  const touch = event.touches[0]
+  if (touch) {
+    // 计算移动距离，如果移动距离很小，可能是点击而不是拖动
+    const dx = touch.clientX - touchState.value.startX
+    const dy = touch.clientY - touchState.value.startY
+    const distance = Math.sqrt(dx * dx + dy * dy)
+    
+    // 如果移动距离超过5px，认为是拖动，阻止默认行为
+    if (distance > 5) {
+      event.preventDefault()
+      mapOffset.value = {
+        x: lastOffset.value.x + dx,
+        y: lastOffset.value.y + dy
+      }
+    }
+  }
+}
+
+const handleTouchEnd = (event) => {
+  if (touchState.value.isActive) {
+    const dx = event.changedTouches[0]?.clientX - touchState.value.startX || 0
+    const dy = event.changedTouches[0]?.clientY - touchState.value.startY || 0
+    const distance = Math.sqrt(dx * dx + dy * dy)
+    
+    // 如果移动距离很小，可能是点击，不更新偏移
+    if (distance <= 5) {
+      // 重置偏移，可能是误触
+      mapOffset.value = { ...lastOffset.value }
+    } else {
+      lastOffset.value = { ...mapOffset.value }
+    }
+    touchState.value.isActive = false
   }
 }
 
@@ -415,30 +477,6 @@ onUnmounted(() => {
   line-height: 1.8;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.hero-actions button {
-  border: none;
-  border-radius: 16px;
-  padding: 14px 22px;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(42, 124, 255, 0.15);
-}
-
-.hero-actions .primary {
-  background: var(--sunset);
-  color: white;
-}
-
-.hero-actions .ghost {
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--text);
-}
 
 .hero-stats {
   position: relative;
@@ -598,6 +636,8 @@ onUnmounted(() => {
   position: relative;
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .map-stage:active {
@@ -837,13 +877,6 @@ onUnmounted(() => {
   .subtitle {
     font-size: 14px;
     line-height: 1.6;
-  }
-  .hero-actions {
-    margin-top: 20px;
-  }
-  .hero-actions button {
-    padding: 12px 18px;
-    font-size: 14px;
   }
   .hero-stats {
     grid-template-columns: 1fr;
