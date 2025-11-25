@@ -212,5 +212,53 @@ onMounted(() => {
 .error-cell {
   color: #e74c3c;
 }
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px;
+  }
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 20px;
+  }
+  .refresh-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .main-content {
+    padding: 16px;
+  }
+  .stats-bar {
+    padding: 16px;
+  }
+  .stat-value {
+    font-size: 24px;
+  }
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .data-table {
+    min-width: 600px;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+  .data-table th:first-child,
+  .data-table td:first-child {
+    padding-left: 12px;
+  }
+  .data-table th:last-child,
+  .data-table td:last-child {
+    padding-right: 12px;
+  }
+}
 </style>
 

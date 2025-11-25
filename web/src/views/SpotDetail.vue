@@ -511,4 +511,75 @@ onMounted(() => {
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .detail-layout {
+    padding: 16px 20px 24px;
+    gap: 20px;
+  }
+  .detail-top-bar {
+    margin: -16px -20px 20px;
+    padding: 0 20px;
+  }
+  .top-bar-content {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 0;
+  }
+  .header-title {
+    text-align: center;
+  }
+  .header-title h1 {
+    font-size: 20px;
+  }
+  .header-meta {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ghost-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .detail-content {
+    gap: 20px;
+  }
+  .hero-card img {
+    height: 240px;
+  }
+  .hero-overlay {
+    padding: 16px;
+  }
+  .hero-overlay h2 {
+    font-size: 18px;
+  }
+  .mini-map {
+    padding: 14px;
+  }
+  .mini-map__canvas {
+    height: 200px;
+  }
+  .info-card {
+    padding: 20px;
+  }
+  .info-card h3 {
+    font-size: 16px;
+  }
+  .coords {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .primary-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+  .toast {
+    top: 20px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
 </style>

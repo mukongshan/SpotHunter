@@ -782,16 +782,142 @@ onUnmounted(() => {
     padding: 24px 0 32px;
     width: calc(100% - 32px);
   }
-  .top-bar {
+  .hero-panel {
     grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
-  .nav-links {
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  .stat-card {
+    padding: 16px;
+  }
+  .stat-card strong {
+    font-size: 24px;
+  }
+  .hero-text h1 {
+    font-size: 32px;
   }
   .map-stage {
     height: 520px;
+  }
+  .map-toolbar {
+    padding: 16px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .map-toolbar h2 {
+    font-size: 18px;
+  }
+  .info-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-layout {
+    padding: 16px 0 24px;
+    width: calc(100% - 24px);
+    gap: 16px;
+  }
+  .hero-panel {
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .hero-text .eyebrow {
+    font-size: 11px;
+  }
+  .hero-text h1 {
+    font-size: 24px;
+    margin: 8px 0;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .hero-actions {
+    margin-top: 20px;
+  }
+  .hero-actions button {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .stat-card {
+    padding: 16px;
+  }
+  .stat-card span {
+    font-size: 11px;
+  }
+  .stat-card strong {
+    font-size: 28px;
+    margin: 6px 0;
+  }
+  .stat-card small {
+    font-size: 12px;
+  }
+  .info-card {
+    padding: 16px 20px;
+  }
+  .info-card h3 {
+    font-size: 16px;
+  }
+  .map-panel {
+    border-radius: 20px;
+  }
+  .map-toolbar {
+    padding: 12px 16px;
+  }
+  .map-toolbar h2 {
+    font-size: 16px;
+  }
+  .map-toolbar p {
+    font-size: 12px;
+  }
+  .map-controls {
+    gap: 8px;
+  }
+  .map-controls button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .map-stage {
+    height: 400px;
+  }
+  .spot-popover {
+    width: calc(100% - 32px);
+    max-width: 280px;
+    padding: 16px;
+  }
+  .spot-popover header h3 {
+    font-size: 16px;
+  }
+  .spot-popover p {
+    font-size: 13px;
+  }
+  .spot-actions {
+    flex-direction: column;
+  }
+  .spot-actions button {
+    width: 100%;
+  }
+  .map-footer {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+  .toast {
+    top: 70px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    padding: 12px 16px;
+    font-size: 14px;
   }
 }
 </style>

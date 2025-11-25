@@ -165,11 +165,54 @@ const handleNav = (item) => {
   .top-bar-inner {
     grid-template-columns: auto auto;
     gap: 12px;
+    width: calc(100% - 32px);
+    padding: 12px 0;
   }
   .nav-links {
     grid-column: span 2;
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar-inner {
+    width: calc(100% - 24px);
+    padding: 10px 0;
+    gap: 8px;
+  }
+  .logo {
+    gap: 8px;
+  }
+  .badge {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  .logo strong {
+    font-size: 14px;
+  }
+  .logo small {
+    font-size: 11px;
+  }
+  .nav-links {
+    gap: 8px;
+  }
+  .nav-links button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .user-mini {
+    gap: 8px;
+  }
+  .user-mini img {
+    width: 32px;
+    height: 32px;
+  }
+  .user-mini span {
+    font-size: 11px;
+  }
+  .user-mini strong {
+    font-size: 13px;
   }
 }
 </style>

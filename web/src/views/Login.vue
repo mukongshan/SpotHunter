@@ -341,4 +341,32 @@ button:disabled {
     padding: 40px 24px;
   }
 }
+
+@media (max-width: 768px) {
+  .form-panel {
+    padding: 32px 20px;
+  }
+  .form-header h2 {
+    font-size: 24px;
+  }
+  .form-header p {
+    font-size: 14px;
+  }
+  .auth-form {
+    margin-top: 32px;
+    gap: 20px;
+  }
+  input {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  button {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  .mode-toggle {
+    margin-top: 24px;
+    font-size: 13px;
+  }
+}
 </style>

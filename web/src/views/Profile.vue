@@ -317,8 +317,83 @@ onMounted(() => {
   .history-card,
   .logout-card {
     width: calc(100% - 32px);
-    grid-template-columns: 1fr;
     padding: 24px;
+  }
+  .profile-hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .identity {
+    flex-direction: column;
+    text-align: center;
+  }
+  .score-pill {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding-bottom: 40px;
+  }
+  .profile-hero,
+  .history-card,
+  .logout-card {
+    width: calc(100% - 24px);
+    margin: 20px auto 16px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .profile-hero {
+    padding: 20px;
+    gap: 16px;
+  }
+  .identity {
+    gap: 12px;
+  }
+  .identity img {
+    width: 72px;
+    height: 72px;
+    border-radius: 24px;
+  }
+  .identity h2 {
+    font-size: 18px;
+  }
+  .identity button {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+  .score-pill {
+    padding: 16px 20px;
+  }
+  .score-pill strong {
+    font-size: 36px;
+  }
+  .history-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .history-header h3 {
+    font-size: 18px;
+  }
+  .history-item {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+  .history-image {
+    width: 100%;
+    height: 180px;
+  }
+  .logout-content {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .logout-btn {
+    width: 100%;
+    padding: 12px;
   }
 }
 </style>
