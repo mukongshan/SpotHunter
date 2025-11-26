@@ -12,6 +12,6 @@ public interface CheckInRepository extends JpaRepository<CheckIn, Long> {
 
     List<CheckIn> findTop100ByUser_IdOrderByCreateTimeDesc(Long userId);
 
-    List<CheckIn> findTop100ByOrderByCreateTimeDesc();
+    List<CheckIn> findByOrderByCreateTimeDesc();
 }
 

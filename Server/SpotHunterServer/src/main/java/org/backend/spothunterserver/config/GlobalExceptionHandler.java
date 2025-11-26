@@ -1,7 +1,7 @@
 package org.backend.spothunterserver.config;
 
 import jakarta.validation.ConstraintViolationException;
-import org.backend.spothunterserver.dto.ApiResponse;
+import org.backend.spothunterserver.dto.common.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

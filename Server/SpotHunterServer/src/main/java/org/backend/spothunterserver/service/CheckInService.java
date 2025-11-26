@@ -6,14 +6,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
-import org.backend.spothunterserver.dto.AdminCheckInItem;
-import org.backend.spothunterserver.dto.CheckInHistoryItem;
+import org.backend.spothunterserver.dto.checkin.AdminCheckInItem;
+import org.backend.spothunterserver.dto.checkin.CheckInHistoryItem;
+import org.backend.spothunterserver.dto.checkin.CheckInRequest;
+import org.backend.spothunterserver.dto.checkin.CheckInResult;
 import org.backend.spothunterserver.entity.CheckIn;
 import org.backend.spothunterserver.entity.Spot;
 import org.backend.spothunterserver.entity.User;
 import org.backend.spothunterserver.repository.CheckInRepository;
 import org.backend.spothunterserver.repository.SpotRepository;
 import org.backend.spothunterserver.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,20 +26,20 @@ public class CheckInService {
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
 
-    private final CheckInRepository checkInRepository;
-    private final UserRepository userRepository;
-    private final SpotRepository spotRepository;
+    @Autowired
+    private CheckInRepository checkInRepository;
 
-    public CheckInService(CheckInRepository checkInRepository,
-                          UserRepository userRepository,
-                          SpotRepository spotRepository) {
-        this.checkInRepository = checkInRepository;
-        this.userRepository = userRepository;
-        this.spotRepository = spotRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private SpotRepository spotRepository;
 
     @Transactional
-    public CheckInResult checkIn(Long userId, Long spotId) {
+    public CheckInResult checkIn(CheckInRequest request) {
+        Long userId = request.userId();
+        Long spotId = request.spotId();
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("用户不存在"));
         Spot spot = spotRepository.findById(spotId)
@@ -71,7 +74,7 @@ public class CheckInService {
 
     @Transactional(readOnly = true)
     public List<AdminCheckInItem> adminList() {
-        return checkInRepository.findTop100ByOrderByCreateTimeDesc().stream()
+        return checkInRepository.findByOrderByCreateTimeDesc().stream()
                 .map(this::toAdminItem)
                 .collect(Collectors.toList());
     }

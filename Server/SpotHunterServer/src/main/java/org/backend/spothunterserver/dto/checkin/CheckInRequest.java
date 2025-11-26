@@ -1,4 +1,4 @@
-package org.backend.spothunterserver.dto;
+package org.backend.spothunterserver.dto.checkin;
 
 import jakarta.validation.constraints.NotNull;
 

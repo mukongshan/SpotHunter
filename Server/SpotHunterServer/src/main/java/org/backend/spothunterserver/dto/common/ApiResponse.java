@@ -1,4 +1,4 @@
-package org.backend.spothunterserver.dto;
+package org.backend.spothunterserver.dto.common;
 
 public class ApiResponse<T> {
 

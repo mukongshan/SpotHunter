@@ -1,4 +1,4 @@
-package org.backend.spothunterserver.service;
+package org.backend.spothunterserver.dto.checkin;
 
 public record CheckInResult(int newScore, int deltaScore) {
 }
